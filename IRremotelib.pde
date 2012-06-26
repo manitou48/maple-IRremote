@@ -2,7 +2,7 @@
 //   test maple port of IRremote lib
 //  xmit pin 24 (pwm)    timer 4 ch 4 for maple RET6
 //  recv pin 8   whatever, using timer2 channel 1 for 50us sampling
-//   can't run both xmit and recv concurrently  
+//   can run both xmit and recv concurrently  
 // for examples/  fix SerialUSB and recv pin
 //  http://www.arcfn.com/2009/08/multi-protocol-infrared-remote-library.html
 //  https://github.com/shirriff/Arduino-IRremote
@@ -76,8 +76,9 @@ void dump(decode_results *results) {
 
 void loop() {
   long sonycmd[] = {0xA9A,0x91A,0x61A}; // power 0 7
-  
-  // irsend.sendSony(sonycmd[0],12);   // can't run send/recv concurrently
+
+  irsend.sendSony(sonycmd[0],12);   // can't run send/recv concurrently
+  delay(6);   // allow gap time to grow 
   
   if (irrecv.decode(&results)) {
     Serial.println(results.value, HEX);

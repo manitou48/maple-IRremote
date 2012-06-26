@@ -227,7 +227,9 @@ void IRsend::mark(int time) {
   // The mark output is modulated at the PWM frequency.
   pwmtimer.setMode(PWM_TIMER_CH,TIMER_PWM);
   pwmtimer.resume();
-  delayMicroseconds(time);
+  unsigned int t1 = micros();
+  while((micros() - t1) < time);
+//  delayMicroseconds(time);
 }
 
 /* Leave pin off for time (given in microseconds) */
@@ -236,7 +238,9 @@ void IRsend::space(int time) {
   // A space is no output, so the PWM output is disabled.
   pwmtimer.pause();
   pwmtimer.setMode(PWM_TIMER_CH,TIMER_DISABLED);  //pull pin low
-  delayMicroseconds(time);
+  unsigned int t1 = micros();
+  while((micros() - t1) < time);
+//  delayMicroseconds(time);
 }
 
 void IRsend::enableIROut(int khz) {
