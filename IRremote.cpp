@@ -85,7 +85,7 @@ void IRsend::sendNEC(unsigned long data, int nbits)
     data <<= 1;
   }
   mark(NEC_BIT_MARK);
-  space(0);
+  space(1);  //maple
 }
 
 void IRsend::sendSony(unsigned long data, int nbits) {
@@ -117,7 +117,7 @@ void IRsend::sendRaw(unsigned int buf[], int len, int hz)
       mark(buf[i]);
     }
   }
-  space(0); // Just to be sure
+  space(1); // Just to be sure  maple 
 }
 
 // Note: first bit must be a one (start bit)
@@ -139,7 +139,7 @@ void IRsend::sendRC5(unsigned long data, int nbits)
     }
     data <<= 1;
   }
-  space(0); // Turn off at end
+  space(1); // Turn off at end  maple
 }
 
 // Caller needs to take care of flipping the toggle bit
@@ -171,7 +171,7 @@ void IRsend::sendRC6(unsigned long data, int nbits)
 
     data <<= 1;
   }
-  space(0); // Turn off at end
+  space(1); // Turn off at end  maple
 }
 void IRsend::sendPanasonic(unsigned int address, unsigned long data) {
     enableIROut(35);
@@ -198,7 +198,7 @@ void IRsend::sendPanasonic(unsigned int address, unsigned long data) {
         data <<= 1;
     }
     mark(PANASONIC_BIT_MARK);
-    space(0);
+    space(1); // maple
 }
 void IRsend::sendJVC(unsigned long data, int nbits, int repeat)
 {
@@ -220,7 +220,7 @@ void IRsend::sendJVC(unsigned long data, int nbits, int repeat)
         data <<= 1;
     }
     mark(JVC_BIT_MARK);
-    space(0);
+    space(1);  // maple
 }
 void IRsend::mark(int time) {
   // Sends an IR mark for the specified number of microseconds.
@@ -258,7 +258,7 @@ void IRsend::enableIROut(int khz) {
     int freq = 1000 * khz;
     pwmtimer.pause();
     pinMode(PWM_PIN,PWM);
-    pwmtimer.setPrescaleFactor(72);  // microseconds
+    pwmtimer.setPrescaleFactor(CLOCK_SPEED_MHZ);  // microseconds
     pwmtimer.setOverflow(1000000/freq);
     pwmtimer.setMode(PWM_TIMER_CH,TIMER_PWM);
     pwmtimer.setCompare(PWM_TIMER_CH,1000000/freq/PWM_DUTY);
