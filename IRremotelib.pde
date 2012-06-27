@@ -77,7 +77,7 @@ void dump(decode_results *results) {
 void loop() {
   long sonycmd[] = {0xA9A,0x91A,0x61A}; // power 0 7
 
-  irsend.sendSony(sonycmd[0],12);   // can't run send/recv concurrently
+  irsend.sendSony(sonycmd[0],12);   // run send/recv concurrently
   delay(6);   // allow gap time to grow 
   
   if (irrecv.decode(&results)) {
