@@ -280,7 +280,7 @@ void IRrecv::enableIRIn() {
 
     // Set up period
     //recvtimer.setPeriod(USECPERTICK); // in microseconds
-    recvtimer.setPrescaleFactor(72);  // microseconds
+    recvtimer.setPrescaleFactor(CLOCK_SPEED_MHZ);  // microseconds
     recvtimer.setOverflow(USECPERTICK);
 
     // Set up an interrupt on channel 1
