@@ -1,7 +1,9 @@
 // IRremotelib
 //   test maple port of IRremote lib
 //  xmit pin 24 (pwm)    timer 4 ch 4 for maple RET6
+//    pin 24 to 100ohm to IR LED to ground
 //  recv pin 8   whatever, using timer2 channel 1 for 50us sampling
+//    pin 8 to Sharp GP1UX311QS  38khz
 //   can run both xmit and recv concurrently  
 // for examples/  fix SerialUSB and recv pin
 //  http://www.arcfn.com/2009/08/multi-protocol-infrared-remote-library.html
