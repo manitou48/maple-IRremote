@@ -258,7 +258,7 @@ void IRsend::enableIROut(int khz) {
     int freq = 1000 * khz;
     pwmtimer.pause();
     pinMode(PWM_PIN,PWM);
-    pwmtimer.setPrescaleFactor(CLOCK_SPEED_MHZ);  // microseconds
+    pwmtimer.setPrescaleFactor(CYCLES_PER_MICROSECOND);  // microseconds
     pwmtimer.setOverflow(1000000/freq);
     pwmtimer.setMode(PWM_TIMER_CH,TIMER_PWM);
     pwmtimer.setCompare(PWM_TIMER_CH,1000000/freq/PWM_DUTY);
@@ -280,7 +280,7 @@ void IRrecv::enableIRIn() {
 
     // Set up period
     //recvtimer.setPeriod(USECPERTICK); // in microseconds
-    recvtimer.setPrescaleFactor(CLOCK_SPEED_MHZ);  // microseconds
+    recvtimer.setPrescaleFactor(CYCLES_PER_MICROSECOND);  // microseconds
     recvtimer.setOverflow(USECPERTICK);
 
     // Set up an interrupt on channel 1
