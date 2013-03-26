@@ -9,5 +9,10 @@ uses PWM on pin 24, timer 4/channel 4  (maple RET6) varies by board
 
 limited testing with Sony remote/VCR
 
+
 examples/ need to fix pin number and Serial to SerialUSB
+
+irsndrcv1.png  a scope snapshot of running an IR LED transmit with the IR 
+               receiver at the same time.  Blue is pulsing (40khz) IR transmit,
+               red is receiver
 
